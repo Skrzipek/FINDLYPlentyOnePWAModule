@@ -1,5 +1,5 @@
 {
-  "name": "@findly/shop-module-pwa",
+  "name": "@findly.tech/shop-module-pwa",
   "version": "0.2.17",
   "description": "FINDLY search integration for PlentyONE PWA – conditional override of search, facet and autocomplete",
   "license": "AGPL-3.0",
@@ -33,5 +33,9 @@
     "pwa",
     "search",
     "nuxt-module"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
