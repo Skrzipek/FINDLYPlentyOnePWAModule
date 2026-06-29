@@ -1,0 +1,1 @@
+export { useFindlyRecentQueries } from './useFindlyRecentQueries';

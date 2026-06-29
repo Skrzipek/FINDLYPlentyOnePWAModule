@@ -1,0 +1,1 @@
+export { useFindlyActiveFilterTags } from './useFindlyActiveFilterTags';

@@ -1,0 +1,1 @@
+export { useFindlyInlineGhostAlign } from './useFindlyInlineGhostAlign';
