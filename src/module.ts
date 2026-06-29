@@ -10,7 +10,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@findly/shop-module-pwa',
+    name: '@findly.tech/shop-module-pwa',
     configKey: 'findly',
     compatibility: {
       nuxt: '>=3.0.0',
@@ -27,7 +27,7 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url);
 
     nuxt.options.build.transpile = nuxt.options.build.transpile || [];
-    nuxt.options.build.transpile.push('@findly/shop-module-pwa');
+    nuxt.options.build.transpile.push('@findly.tech/shop-module-pwa');
 
     addComponent({
       name: 'FindlyRangeFilter',

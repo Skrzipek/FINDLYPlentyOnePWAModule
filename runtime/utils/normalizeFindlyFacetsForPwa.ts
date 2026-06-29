@@ -62,7 +62,7 @@ function normalizeFilterGroup(group: FilterGroup): FilterGroup {
         },
         ranges: normalizeFindlyRangePresets(extended.findlyRange.ranges),
       },
-    };
+    } as FindlyFacetWithRange;
   }
 
   const pwaType = mapPwaFilterType(findlyType, field);
@@ -99,7 +99,7 @@ function normalizeFilterGroup(group: FilterGroup): FilterGroup {
     ...(tileExtended.findlyTiles?.length
       ? { findlyTiles: normalizeFindlyTilePresets(tileExtended.findlyTiles) }
       : {}),
-  };
+  } as FilterGroup;
 }
 
 export function normalizeFindlyFacetsForPwa(facets: FilterGroup[] | undefined | null): FilterGroup[] {

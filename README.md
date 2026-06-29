@@ -1,4 +1,4 @@
-# @findly/shop-module-pwa
+# @findly.tech/shop-module-pwa
 
 FINDLY-Integration für PlentyONE PWA-Shops. Das Modul registriert dünne Router-Composables für `useSearch`, `useSearchSuggestions` und `useProducts`. **Nur wenn** das Backend-Plugin aktiv ist (`enabled: true`), werden FINDLY-REST-Endpoints genutzt. Andernfalls delegiert das Modul **1:1 an die Theme-Composables** des Shops (`app/composables/…`) – kein eigener Plenty-Fallback-Pfad.
 
@@ -11,7 +11,7 @@ FINDLY-Integration für PlentyONE PWA-Shops. Das Modul registriert dünne Router
 ## Installation
 
 ```bash
-npm install @findly/shop-module-pwa
+npm install @findly.tech/shop-module-pwa
 ```
 
 Lokale Entwicklung (Monorepo / File-Link):
@@ -28,7 +28,7 @@ In `nuxt.config.ts` **nach** `@plentymarkets/shop-core` eintragen:
 export default defineNuxtConfig({
   modules: [
     '@plentymarkets/shop-core',
-    '@findly/shop-module-pwa',
+    '@findly.tech/shop-module-pwa',
     // …weitere Module
   ],
   findly: {
@@ -91,3 +91,7 @@ Schlägt ein FINDLY-Request zur Laufzeit fehl, fällt das Modul für diesen einz
 ## Lizenz
 
 AGPL-3.0
+
+## npm-Veröffentlichung
+
+Siehe [docs/NPM_PUBLISHING.md](./docs/NPM_PUBLISHING.md).

@@ -1,6 +1,6 @@
 {
   "name": "@findly.tech/shop-module-pwa",
-  "version": "0.2.17",
+  "version": "0.2.19",
   "description": "FINDLY search integration for PlentyONE PWA – conditional override of search, facet and autocomplete",
   "license": "AGPL-3.0",
   "type": "module",
@@ -17,7 +17,7 @@
     "@nuxt/kit": "^4.4.6"
   },
   "peerDependencies": {
-    "@plentymarkets/shop-api": ">=1.0.0",
+    "@plentymarkets/shop-api": ">=0.100.0",
     "@plentymarkets/shop-core": ">=1.28.0",
     "nuxt": "^3.0.0 || ^4.0.0"
   },

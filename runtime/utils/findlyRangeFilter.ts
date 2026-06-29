@@ -9,7 +9,9 @@ function toNumber(value: unknown, fallback = 0): number {
 }
 
 export function hasFindlyRangeMeta(facet?: FilterGroup | null): facet is FindlyFacetWithRange {
-  return Boolean(facet && typeof facet === 'object' && facet.findlyRange?.stats);
+  const extended = facet as FindlyFacetWithRange | null | undefined;
+
+  return Boolean(extended?.findlyRange?.stats);
 }
 
 export function getFindlyRangeMeta(facet?: FilterGroup | null): FindlyRangeMeta | null {
@@ -31,34 +33,34 @@ export function normalizeFindlyRangePresets(ranges: unknown): FindlyRangePreset[
     return [];
   }
 
-  return ranges
-    .map((range) => {
-      if (!range || typeof range !== 'object') {
-        return null;
-      }
+  const result: FindlyRangePreset[] = [];
 
-      const item = range as Record<string, unknown>;
-      const key = String(item.key ?? '').trim();
-      const from = toNumber(item.from, Number.NaN);
-      const to = toNumber(item.to, Number.NaN);
+  for (const range of ranges) {
+    if (!range || typeof range !== 'object') {
+      continue;
+    }
 
-      if (!key || Number.isNaN(from) || Number.isNaN(to)) {
-        return null;
-      }
+    const item = range as Record<string, unknown>;
+    const key = String(item.key ?? '').trim();
+    const from = toNumber(item.from, Number.NaN);
+    const to = toNumber(item.to, Number.NaN);
 
-      return {
-        key,
-        from,
-        to,
-        count:
-          item.doc_count !== undefined
-            ? toNumber(item.doc_count)
-            : item.count !== undefined
-              ? toNumber(item.count)
-              : undefined,
-      };
-    })
-    .filter((range): range is FindlyRangePreset => range !== null);
+    if (!key || Number.isNaN(from) || Number.isNaN(to)) {
+      continue;
+    }
+
+    const preset: FindlyRangePreset = { key, from, to };
+
+    if (item.doc_count !== undefined) {
+      preset.count = toNumber(item.doc_count);
+    } else if (item.count !== undefined) {
+      preset.count = toNumber(item.count);
+    }
+
+    result.push(preset);
+  }
+
+  return result;
 }
 
 export function getSliderBoundsFromStats(esMin: number, esMax: number): { min: number; max: number } {

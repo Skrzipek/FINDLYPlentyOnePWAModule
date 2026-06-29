@@ -21,33 +21,37 @@ export function normalizeFindlyTilePresets(tiles: unknown): FindlyTilePreset[] {
     return [];
   }
 
-  return tiles
-    .map((tile) => {
-      if (!tile || typeof tile !== 'object') {
-        return null;
-      }
+  const result: FindlyTilePreset[] = [];
 
-      const item = tile as Record<string, unknown>;
-      const value = trimString(item.value);
+  for (const tile of tiles) {
+    if (!tile || typeof tile !== 'object') {
+      continue;
+    }
 
-      if (!value) {
-        return null;
-      }
+    const item = tile as Record<string, unknown>;
+    const value = trimString(item.value);
 
-      const imagePath = trimString(item.imagePath);
-      const hexdata = trimString(item.hexdata);
+    if (!value) {
+      continue;
+    }
 
-      if (imagePath) {
-        return { value, imagePath };
-      }
+    const imagePath = trimString(item.imagePath);
+    const hexdata = trimString(item.hexdata);
 
-      if (hexdata) {
-        return { value, hexdata };
-      }
+    if (imagePath) {
+      result.push({ value, imagePath });
+      continue;
+    }
 
-      return { value };
-    })
-    .filter((tile): tile is FindlyTilePreset => tile !== null);
+    if (hexdata) {
+      result.push({ value, hexdata });
+      continue;
+    }
+
+    result.push({ value });
+  }
+
+  return result;
 }
 
 export function resolveFindlyTileForValue(value: string, presets: FindlyTilePreset[]): FindlyFilterTile | null {
